@@ -50,7 +50,8 @@ export default function Contact() {
     setStatus('loading')
     setErrorMsg('')
     try {
-      await axios.post('/api/contact', form)
+      const base = import.meta.env.VITE_API_URL || ''
+      await axios.post(`${base}/api/contact`, form)
       setStatus('success')
       setForm({ name: '', email: '', message: '' })
       setTimeout(() => setStatus('idle'), 5000)
